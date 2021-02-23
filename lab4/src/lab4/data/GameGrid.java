@@ -186,7 +186,8 @@ public class GameGrid extends Observable {
 		            	count++;
 				}
 				
-				if (y + 4 < gridList.length &&
+				if (y + 4 < gridList.length && 	//Måste ju på nått sätt få in INROW mer(?)då den är det som anger hur många som ska vara på rad..
+				    				//alltså det är ju som 4 st som kollas? har lite svårt att fatta
 		                    player == gridList[x+1][y+1] && // upp och till höger
 		                    player == gridList[x+2][y+2] &&
 		                    player == gridList[x+3][y+3] &&
