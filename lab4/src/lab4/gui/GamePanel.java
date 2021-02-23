@@ -16,7 +16,7 @@ import lab4.data.GameGrid;
 
 public class GamePanel extends JPanel implements Observer{
 
-	private final int UNIT_SIZE = 20;
+	private final int UNIT_SIZE = 20; //rutorna är 20*20.. 
 	private GameGrid grid;
 	
 	/**
@@ -41,8 +41,10 @@ public class GamePanel extends JPanel implements Observer{
 	 * @param y the y coordinates
 	 * @return an integer array containing the [x, y] grid position
 	 */
-	public int[] getGridPosition(int x, int y){}
-	
+	public int[] getGridPosition(int x, int y){
+		return new int[] {x/UNIT_SIZE, y/UNIT_SIZE};
+		
+	}
 	//UNIT_SIZE för att konvertera till rutor.. 
 	
 	public void update(Observable arg0, Object arg1) {
@@ -52,6 +54,32 @@ public class GamePanel extends JPanel implements Observer{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
+		g.setColor(Color.gray);
+		g.fillRect(0, 0, grid.getSize()*UNIT_SIZE, grid.getSize()*UNIT_SIZE);
+	
+		g.setColor(Color.black);
+		for(int x = 0; x< grid.getSize(); x++) {
+			for (int y = 0; y < grid.getSize(); y++) {
+				g.drawRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //först koordinater justerat i UNIT_SIZE, sen bredd, höjd
+			}
+		}
+		
+		//Rita spelarnas positioner med runda prickar i olika färg
+		
+		for(int x = 0; x<grid.getSize(); x++) {
+			for(int y = 0; y< grid.getSize(); y++) {
+				if(grid.getLocation(x, y) == GameGrid.ME) { //ME har färgen cyan
+					g.setColor(Color.CYAN);
+					g.fillOval(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+				}
+				
+				if(grid.getLocation(x, y)== GameGrid.OTHER) {
+					g.setColor(Color.ORANGE);
+					g.fillOval(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+				}
+			}
+		}
+		this.repaint();
 	}
 	
 }
