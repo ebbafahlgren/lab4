@@ -31,6 +31,7 @@ public class GameGrid extends Observable {
 				gridList[x][y] = EMPTY;
 			}
 		} 
+		//Vad gör denna for-loop?
 	}
 	
 	/**
@@ -82,7 +83,7 @@ public class GameGrid extends Observable {
             for (int y = 0; y < gridList.length; y++) {
                 gridList[x][y] = EMPTY;
             }
-        }
+        } //Samma loop här?? Behövs den däruppe?
         setChanged();
         notifyObservers();
     }
@@ -117,11 +118,23 @@ public class GameGrid extends Observable {
 			for (int y = 0; y < gridList.length; y++) {
 				if (getLocation(x, y) == player) {
 					count++;
-				} if (count == INROW) {
+				} 
+//				else {
+//					count = 0;
+//				} vill ju nollställa här om de ej är i rad
+//				  före den kollar om det är 5 st
+//			
+////			if (count == INROW) {
+////				return true;
+////			}
+				
+				
+				if (count == INROW) {
 					return true;
 				} else {
 					count = 0;
-				}
+				} //Tror ej denna räknar rätt? 
+				  //nollställer efter varje
 			}
 		}
 		return false;
@@ -137,11 +150,20 @@ public class GameGrid extends Observable {
 			for (int x = 0; x < gridList.length; x++) {
 				if (getLocation(x, y) == player) {
 					count++;
-				} if (count == INROW) {
+				} 
+//				else {
+//					count = 0;
+//				}
+//				
+////				if (count == INROW) {
+////					return true;
+////				} samma här!
+				
+				if (count == INROW) {
 					return true;
 				} else {
 					count = 0;
-				}
+				} //inte denna heller..
 			}
 		}
 		return false;
@@ -159,9 +181,11 @@ public class GameGrid extends Observable {
 				if (player == EMPTY) { 
 		                continue;	// Vi skippar att kolla tomma rutor
 				}
+				
 				if (getLocation(x, y) == player) { 
 		            	count++;
 				}
+				
 				if (y + 4 < gridList.length &&
 		                    player == gridList[x+1][y+1] && // upp och till höger
 		                    player == gridList[x+2][y+2] &&
@@ -169,7 +193,8 @@ public class GameGrid extends Observable {
 		                	player == gridList[x+4][y+4] &&
 		                	count == INROW) {
 					return true; 
-				}             
+				}         
+				
 				if (y - 4 >= 0 &&
 		                    player == gridList[x+1][y-1] && // upp och till vänster
 		                    player == gridList[x+2][y-2] &&
@@ -178,7 +203,7 @@ public class GameGrid extends Observable {
 		                    count == INROW) {
 					return true;
 		            }
-		        }
+		        } //alltså tror det är påväg men har lite svårt att tolka dessa..
 		    }
 		    return false; // ingen vinnare hittades
 	}
