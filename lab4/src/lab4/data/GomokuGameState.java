@@ -188,4 +188,3 @@ public class GomokuGameState extends Observable implements Observer{
 	}
 	
 }
-
