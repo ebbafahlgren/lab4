@@ -173,36 +173,34 @@ public class GameGrid extends Observable {
 	 * rader och kolumner. 
 	 */
 	private boolean diagonals(int player) {
-		int count = 0;
-		for (int x = 0; x < gridList.length; x++) { // itererar rader, botten till topp
-			for (int y = 0; y < gridList.length; y++) { // itererar kolumner, vänster till höger
+//		int count = 0;
+		for (int x = 4; x < gridList.length; x++) { // itererar rader, botten till topp
+			for (int y = 0; y < gridList.length - 4; y++) { // itererar kolumner, vänster till höger
 				if (player == EMPTY) { 
 		                continue;	// Vi skippar att kolla tomma rutor
 				}
-				
-				if (getLocation(x, y) == player) { 
-		            	count++;
-				}
-				
-				if (y + 4 < gridList.length &&
-		                    player == gridList[x+1][y+1] && // upp och till höger
-		                    player == gridList[x+2][y+2] &&
-		                    player == gridList[x+3][y+3] &&
-		                	player == gridList[x+4][y+4] &&
-		                	count == INROW) {
-					return true; 
-				}         
-				
-				if (y - 4 >= 0 &&
-		                    player == gridList[x+1][y-1] && // upp och till vänster
-		                    player == gridList[x+2][y-2] &&
-		                    player == gridList[x+3][y-3] &&
-		                    player == gridList[x+3][y-4] &&
-		                    count == INROW) {
+//				if (getLocation(x, y) == player) { 
+//		            	count++;
+//				}
+				if (this.gridList[x][y] == player 
+						&& this.gridList[x-1][y+1] == player
+						&& this.gridList[x-2][y+2] == player 
+						&& this.gridList[x-3][y+3] == player 
+						&& this.gridList[x-4][y+4] == player) 
 					return true;
-		            }
-		        } //alltså tror det är påväg men har lite svårt att tolka dessa..
-		    }
+				}
+		}
+		for (int x = 4; x < gridList.length; x++) {
+			for (int y = 4; y < gridList.length; y++) {
+				
+				if (this.gridList[x][y] == player 
+						&& this.gridList[x-1][y-1] == player
+						&& this.gridList[x-2][y-2] == player 
+						&& this.gridList[x-3][y-3] == player 
+						&& this.gridList[x-4][y-4] == player)
+					return true;
+			}
+		}
 		    return false; // ingen vinnare hittades
 	}
 	
