@@ -68,6 +68,7 @@ public class GamePanel extends JPanel implements Observer{
 		
 		for(int x = 0; x<grid.getSize(); x++) {
 			for(int y = 0; y< grid.getSize(); y++) {
+				
 				if(grid.getLocation(x, y) == GameGrid.ME) { //ME har färgen cyan
 					g.setColor(Color.CYAN);
 					g.fillOval(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
