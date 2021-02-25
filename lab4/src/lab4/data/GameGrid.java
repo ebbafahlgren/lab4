@@ -83,7 +83,7 @@ public class GameGrid extends Observable {
             for (int y = 0; y < gridList.length; y++) {
                 gridList[x][y] = EMPTY;
             }
-        } //Samma loop här?? Behövs den däruppe?
+        } //Samma loop här? Behövs den däruppe?
         setChanged();
         notifyObservers();
     }
@@ -118,23 +118,22 @@ public class GameGrid extends Observable {
 			for (int y = 0; y < gridList.length; y++) {
 				if (getLocation(x, y) == player) {
 					count++;
-				} 
-//				else {
-//					count = 0;
-//				} vill ju nollställa här om de ej är i rad
-//				  före den kollar om det är 5 st
-//			
-////			if (count == INROW) {
-////				return true;
-////			}
-				
-				
-				if (count == INROW) {
-					return true;
 				} else {
 					count = 0;
-				} //Tror ej denna räknar rätt? 
-				  //nollställer efter varje
+				} 
+				//vill ju nollställa här om de ej är i rad
+				//före den kollar om det är 5 st
+			
+				if (count == INROW) {
+					return true;
+				}
+					
+//				if (count == INROW) {
+//					return true;
+//				} else {
+//					count = 0;
+//				} //Tror ej denna räknar rätt? Den var fel! kollat i GUI..
+//				  //nollställer efter varje
 			}
 		}
 		return false;
@@ -150,20 +149,19 @@ public class GameGrid extends Observable {
 			for (int x = 0; x < gridList.length; x++) {
 				if (getLocation(x, y) == player) {
 					count++;
-				} 
-//				else {
-//					count = 0;
-//				}
-//				
-////				if (count == INROW) {
-////					return true;
-////				} samma här!
+				} else {
+					count = 0;
+				}
 				
 				if (count == INROW) {
 					return true;
-				} else {
-					count = 0;
-				} //inte denna heller..
+				} //samma här!
+				
+//				if (count == INROW) {
+//					return true;
+//				} else {
+//					count = 0;
+//				} //inte denna heller.. denna felaktig
 			}
 		}
 		return false;
@@ -186,8 +184,7 @@ public class GameGrid extends Observable {
 		            	count++;
 				}
 				
-				if (y + 4 < gridList.length && 	//Måste ju på nått sätt få in INROW mer(?)då den är det som anger hur många som ska vara på rad..
-				    				//alltså det är ju som 4 st som kollas? har lite svårt att fatta
+				if (y + 4 < gridList.length &&
 		                    player == gridList[x+1][y+1] && // upp och till höger
 		                    player == gridList[x+2][y+2] &&
 		                    player == gridList[x+3][y+3] &&
