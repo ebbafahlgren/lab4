@@ -57,7 +57,7 @@ public class GomokuGUI implements Observer{
         pane.setPreferredSize(d);
         pane.setBackground(Color.WHITE);
 
-        //Prints out the name of the game and the buttons
+        
         messageLabel = new JLabel("Welcome to Gomoku!");
 
         connectButton = new JButton();
